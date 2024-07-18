@@ -1,0 +1,71 @@
+services:
+    app-diet-planner:
+        container_name: app
+        build:
+            context: "."
+            target: app-local
+        volumes:
+            - ./:/app
+        networks:
+            default: ~
+            kb-dev: ~
+
+    web-diet-planner:
+        container_name: web
+        build:
+            context: "."
+            target: web-local
+        ports:
+            - "8091:8090"
+        labels:
+            traefik.enable: true
+            traefik.docker.network: kb-dev
+            traefik.http.routers.web-diet-planner.entrypoints: websecure
+            traefik.http.routers.web-diet-planner.rule: Host(`diet-planner.kb-dev.pl`)
+            traefik.http.routers.web-diet-planner.tls: true
+        networks:
+            default: ~
+            kb-dev: ~
+        volumes:
+            - ./public/:/app/public
+        depends_on:
+            app-diet-planner:
+                condition: service_started
+
+    db-diet-planner:
+        container_name: db
+        image: postgres:16.3-alpine3.20
+        ports:
+            - "5456:5432"
+        environment:
+            POSTGRES_PASSWORD: 'dietplanner'
+            POSTGRES_USER: 'dietplanner'
+            POSTGRES_DB: 'dietplanner'
+        command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        networks:
+            default: ~
+            kb-dev: ~
+
+    rabbitmq-diet-planner:
+        container_name: rabbitmq
+        image: rabbitmq:3.12.7-management-alpine
+        ports:
+            - '15672:15672'
+        volumes:
+            - rabbitmq:/var/lib/rabbitmq/mnesia
+        environment:
+            RABBITMQ_DEFAULT_USER: 'user'
+            RABBITMQ_DEFAULT_PASS: 'password'
+        networks:
+            default: ~
+            kb-dev: ~
+
+networks:
+    kb-dev:
+        external: true
+
+volumes:
+    pgdata:
+    rabbitmq:

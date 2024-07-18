@@ -1,0 +1,95 @@
+deptrac:
+  layers:
+    ###> Shared ###
+    - name: SharedDomain
+      collectors:
+        - type: directory
+          value: src/Shared/Domain/.*
+    - name: SharedApplication
+      collectors:
+        - type: directory
+          value: src/Shared/Application/.*
+    - name: SharedInfrastructure
+      collectors:
+        - type: directory
+          value: src/Shared/Infrastructure/.*
+    ###< Shared ###
+
+    ###> DietPlanner/Shared ###
+    - name: DietPlannerSharedDomain
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Shared/Domain/.*
+    - name: DietPlannerSharedApplication
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Shared/Application/.*
+    - name: DietPlannerSharedInfrastructure
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Shared/Infrastructure/.*
+    ###< DietPlanner/Shared ###
+
+    ###> DietPlanner/Ingredient ###
+    - name: DietPlannerIngredientDomain
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Ingredient/Domain/.*
+    - name: DietPlannerIngredientApplication
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Ingredient/Application/.*
+    - name: DietPlannerIngredientInfrastructure
+      collectors:
+        - type: directory
+          value: src/DietPlanner/Ingredient/Infrastructure/.*
+    ###< DietPlanner/Ingredient ###
+
+  ruleset:
+    SharedDomain:
+      - SharedDomain
+    SharedApplication:
+      - SharedDomain
+      - SharedApplication
+    SharedInfrastructure:
+      - SharedDomain
+      - SharedApplication
+      - SharedInfrastructure
+
+    DietPlannerSharedDomain:
+      - SharedDomain
+      - DietPlannerSharedDomain
+    DietPlannerSharedApplication:
+      - SharedDomain
+      - SharedApplication
+      - DietPlannerSharedDomain
+      - DietPlannerSharedApplication
+    DietPlannerSharedInfrastructure:
+      - DietPlannerSharedDomain
+      - DietPlannerSharedApplication
+      - DietPlannerSharedInfrastructure
+      - SharedDomain
+      - SharedApplication
+      - SharedInfrastructure
+
+    DietPlannerIngredientDomain:
+      - SharedDomain
+      - DietPlannerSharedDomain
+      - DietPlannerIngredientDomain
+    DietPlannerIngredientApplication:
+      - SharedDomain
+      - SharedApplication
+      - DietPlannerSharedDomain
+      - DietPlannerSharedApplication
+      - DietPlannerIngredientDomain
+      - DietPlannerIngredientApplication
+    DietPlannerIngredientInfrastructure:
+      - SharedDomain
+      - SharedApplication
+      - SharedInfrastructure
+      - DietPlannerSharedDomain
+      - DietPlannerSharedApplication
+      - DietPlannerSharedInfrastructure
+      - DietPlannerIngredientDomain
+      - DietPlannerIngredientApplication
+      - DietPlannerIngredientInfrastructure
