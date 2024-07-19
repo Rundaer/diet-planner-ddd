@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Tests\DietPlanner\Domain;
+namespace App\Tests\DietPlanner\Ingredient\Domain;
 
 use App\DietPlanner\Ingredient\Domain\Event\IngredientCreated;
 use App\DietPlanner\Ingredient\Domain\Ingredient;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use App\Tests\Shared\Domain\IngredientIdMother;
 
-class IngredientCreatedDomainEventMother
+class IngredientCreatedEventMother
 {
     public static function create(
         ?IngredientId $ingredientId = null,

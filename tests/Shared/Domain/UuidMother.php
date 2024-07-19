@@ -6,6 +6,6 @@ final class UuidMother
 {
     public static function create(): string
     {
-        return MotherCreator::random()->unique()->uuid;
+        return MotherCreator::random()->uuid();
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Tests\DietPlanner\Application\Command\Create;
+namespace App\Tests\DietPlanner\Ingredient\Application\Command\Create;
 
 use App\DietPlanner\Ingredient\Application\Command\Create\CreateIngredientHandler;
-use App\Tests\DietPlanner\Domain\IngredientCreatedDomainEventMother;
-use App\Tests\DietPlanner\Domain\IngredientMother;
+use App\Tests\DietPlanner\Ingredient\Domain\IngredientCreatedEventMother;
+use App\Tests\DietPlanner\Ingredient\Domain\IngredientMother;
 use App\Tests\DietPlanner\Ingredient\IngredientModuleUnitTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateIngredientHandlerTest extends IngredientModuleUnitTestCase
 {
@@ -17,20 +18,21 @@ class CreateIngredientHandlerTest extends IngredientModuleUnitTestCase
 
         $this->handler = new CreateIngredientHandler(
             $this->repository(),
-            $this->eventDispatcher(),
+            $this->eventBus(),
             $this->idGenerator()
         );
     }
 
-    public function testItShouldCreateIngredient(): void
+    #[Test]
+    public function itShouldCreateIngredient(): void
     {
         $command = CreateIngredientCommandMother::create();
 
         $ingredient = IngredientMother::fromRequest($command);
-        $domainEvent = IngredientCreatedDomainEventMother::fromIngredient($ingredient);
+        $event = IngredientCreatedEventMother::fromIngredient($ingredient);
 
         $this->shouldSave($ingredient);
-        $this->shouldDispatchDomainEvent($domainEvent);
+        $this->shouldPublishEvent($event);
 
         $this->dispatchSync($command, $this->handler);
     }

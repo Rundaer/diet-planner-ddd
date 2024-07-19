@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Event;
 
-abstract readonly class DomainEvent
+abstract readonly class Event
 {
     public function __construct(
         public string $aggregateId,

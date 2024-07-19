@@ -11,14 +11,14 @@ use App\DietPlanner\Shared\Domain\ValueObject\IngredientCategoryId;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use App\Shared\Application\Command\Sync\CommandHandler as SyncCommandHandler;
 use App\Shared\Application\Service\IdGeneratorInterface;
-use App\Shared\Domain\Event\DomainEventDispatcherInterface;
+use App\Shared\Domain\Event\EventBusInterface;
 
 readonly class CreateIngredientHandler implements SyncCommandHandler
 {
     public function __construct(
         private IngredientRepositoryInterface $repository,
-        private DomainEventDispatcherInterface $eventDispatcher,
-        private IdGeneratorInterface $idGenerator,
+        private EventBusInterface             $eventDispatcher,
+        private IdGeneratorInterface          $idGenerator,
     ) {}
 
     public function __invoke(CreateIngredientCommand $command): void
@@ -37,6 +37,6 @@ readonly class CreateIngredientHandler implements SyncCommandHandler
 
         $this->repository->save($ingredient);
 
-        $this->eventDispatcher->dispatch(...$ingredient->callEvents());
+        $this->eventDispatcher->publish(...$ingredient->callEvents());
     }
 }

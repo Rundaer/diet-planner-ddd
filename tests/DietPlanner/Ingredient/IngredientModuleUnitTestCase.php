@@ -24,7 +24,12 @@ abstract class IngredientModuleUnitTestCase extends UnitTestCase
             ->shouldReceive('save')
             ->with(Mockery::on(function ($arg) use ($ingredient) {
                 return $arg instanceof Ingredient
-                    && $arg->ingredientId->equals($ingredient->ingredientId);
+                    && $arg->ingredientId->equals($ingredient->ingredientId)
+                    && $arg->ingredientCategoryId->equals($ingredient->ingredientCategoryId)
+                    && $arg->title->equals($ingredient->title)
+                    && $arg->nutritionalInformation->equals($ingredient->nutritionalInformation)
+                    && $arg->measurementType === $ingredient->measurementType
+                ;
             }))
             ->once()
             ->andReturnNull();
@@ -34,7 +39,11 @@ abstract class IngredientModuleUnitTestCase extends UnitTestCase
     {
         $this->repository()
             ->shouldReceive('find')
-            ->with($this->equalTo($id))
+            ->with(Mockery::on(function ($arg) use ($id) {
+                return $arg instanceof IngredientId
+                    && $id->equals($arg)
+                ;
+            }))
             ->once()
             ->andReturn($ingredient);
     }

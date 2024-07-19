@@ -14,10 +14,10 @@ final class Ingredient extends AggregateRoot
 {
     private function __construct(
         public readonly IngredientId $ingredientId,
-        private IngredientCategoryId $ingredientCategoryId,
-        private IngredientTitle $title,
-        private NutritionalInformation $nutritionalInformation,
-        private MeasurementType $measurementType
+        public readonly IngredientCategoryId $ingredientCategoryId,
+        public readonly IngredientTitle $title,
+        public readonly NutritionalInformation $nutritionalInformation,
+        public readonly MeasurementType $measurementType
     ) {}
 
     public static function create(
@@ -33,23 +33,13 @@ final class Ingredient extends AggregateRoot
         return $ingredient;
     }
 
-    public function getIngredientCategoryId(): IngredientCategoryId
-    {
-        return $this->ingredientCategoryId;
-    }
-
-    public function getTitle(): IngredientTitle
-    {
-        return $this->title;
-    }
-
-    public function getNutritionalInformation(): NutritionalInformation
-    {
-        return $this->nutritionalInformation;
-    }
-
-    public function getMeasurementType(): MeasurementType
-    {
-        return $this->measurementType;
+    public static function restore(
+        IngredientId $ingredientId,
+        IngredientCategoryId $ingredientCategoryId,
+        IngredientTitle $title,
+        NutritionalInformation $nutritionalInformation,
+        MeasurementType $measurementType
+    ): Ingredient {
+        return new self($ingredientId, $ingredientCategoryId, $title, $nutritionalInformation, $measurementType);
     }
 }

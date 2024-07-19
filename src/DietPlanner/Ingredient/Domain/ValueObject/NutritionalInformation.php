@@ -37,6 +37,6 @@ final readonly class NutritionalInformation
 
     public function equals(self $nutritionalInformation): bool
     {
-        return $nutritionalInformation === $this;
+        return $nutritionalInformation->toArray() === $this->toArray();
     }
 }

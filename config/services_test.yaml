@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\:
+        resource: '../tests/'
+        exclude:
+            - '../tests/bootstrap.php'
+
+    App\DietPlanner\Ingredient\Domain\Repository\IngredientRepositoryInterface:
+        alias: App\DietPlanner\Ingredient\Infrastructure\Utils\IngredientRepository
+        public: true

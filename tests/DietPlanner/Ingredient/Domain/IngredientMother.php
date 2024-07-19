@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\DietPlanner\Domain;
+namespace App\Tests\DietPlanner\Ingredient\Domain;
 
 use App\DietPlanner\Ingredient\Application\Command\Create\CreateIngredientCommand;
-use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
 use App\DietPlanner\Ingredient\Domain\Ingredient;
+use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
 use App\DietPlanner\Ingredient\Domain\ValueObject\MeasurementType;
 use App\DietPlanner\Ingredient\Domain\ValueObject\NutritionalInformation;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientCategoryId;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\DietPlanner\Domain;
+namespace App\Tests\DietPlanner\Ingredient\Domain;
 
 use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
 use App\Tests\Shared\Domain\IngredientNameMother;

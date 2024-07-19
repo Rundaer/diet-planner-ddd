@@ -3,17 +3,16 @@
 namespace App\Tests\Shared\Infrastructure\PhpUnit;
 
 use App\Shared\Application\Command\Sync\Command as SyncCommand;
-use App\Shared\Application\Command\Async\Command as AsyncCommand;
 use App\Shared\Application\Service\IdGeneratorInterface;
-use App\Shared\Domain\Event\DomainEvent;
-use App\Shared\Domain\Event\DomainEventDispatcherInterface;
+use App\Shared\Domain\Event\Event;
+use App\Shared\Domain\Event\EventBusInterface;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Mockery\MockInterface;
 
 abstract class UnitTestCase extends MockeryTestCase
 {
-    private readonly DomainEventDispatcherInterface|MockInterface|null $eventDispatcher;
+    private readonly EventBusInterface|MockInterface|null $eventDispatcher;
     private readonly IdGeneratorInterface|MockInterface|null $idGenerator;
 
     protected function mock(string $className): MockInterface
@@ -21,17 +20,17 @@ abstract class UnitTestCase extends MockeryTestCase
         return Mockery::mock($className);
     }
 
-    protected function eventDispatcher(): DomainEventDispatcherInterface|MockInterface
+    protected function eventBus(): EventBusInterface|MockInterface
     {
-        return $this->eventDispatcher ??= $this->mock(DomainEventDispatcherInterface::class);
+        return $this->eventDispatcher ??= $this->mock(EventBusInterface::class);
     }
 
-    protected function shouldDispatchDomainEvent(DomainEvent $domainEvent): void
+    protected function shouldPublishEvent(Event $domainEvent): void
     {
-        $this->eventDispatcher()
-            ->shouldReceive('dispatch')
+        $this->eventBus()
+            ->shouldReceive('publish')
             ->with(Mockery::on(function ($arg) use ($domainEvent) {
-                return $arg instanceof DomainEvent
+                return $arg instanceof Event
                     && $arg->aggregateId === $domainEvent->aggregateId;
             }))
             ->andReturnNull();
@@ -51,17 +50,12 @@ abstract class UnitTestCase extends MockeryTestCase
         return $this->idGenerator ??= $this->mock(IdGeneratorInterface::class);
     }
 
-    protected function notify(DomainEvent $event, callable $subscriber): void
+    protected function notify(Event $event, callable $subscriber): void
     {
         $subscriber($event);
     }
 
     protected function dispatchSync(SyncCommand $command, callable $commandHandler): void
-    {
-        $commandHandler($command);
-    }
-
-    protected function dispatchAsync(AsyncCommand $command, callable $commandHandler): void
     {
         $commandHandler($command);
     }

@@ -7,7 +7,6 @@ doctrine:
         #server_version: '16'
 
         profiling_collect_backtrace: '%kernel.debug%'
-        use_savepoints: true
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
@@ -16,14 +15,13 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            DietPlanner\Ingredient:
+            App\DietPlanner\Ingredient:
+                mapping: true
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/DietPlanner/Ingredient/Infrastructure/Doctrine/Entity'
-                prefix: 'DietPlanner\Ingredient\Infrastructure\Doctrine\Entity'
-                alias: DietPlanner\Ingredient
-        controller_resolver:
-            auto_mapping: false
+                dir: '%kernel.project_dir%/src/DietPlanner/Ingredient/Infrastructure/Persistence/Doctrine/Entity'
+                prefix: 'App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity'
+                alias: App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine
 
 when@test:
     doctrine:

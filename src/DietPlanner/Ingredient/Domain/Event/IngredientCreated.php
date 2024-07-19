@@ -3,11 +3,11 @@
 namespace App\DietPlanner\Ingredient\Domain\Event;
 
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
-use App\Shared\Domain\Event\DomainEvent;
+use App\Shared\Domain\Event\Event;
 use DateTimeImmutable;
 use DateTimeInterface;
 
-final readonly class IngredientCreated extends DomainEvent
+final readonly class IngredientCreated extends Event
 {
     public const string EVENT_NAME = 'ingredient_created';
 

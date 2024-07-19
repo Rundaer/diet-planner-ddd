@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\DietPlanner\Application\Command\Create;
+namespace App\Tests\DietPlanner\Ingredient\Application\Command\Create;
 
 use App\DietPlanner\Ingredient\Application\Command\Create\CreateIngredientCommand;
 use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
@@ -8,9 +8,9 @@ use App\DietPlanner\Ingredient\Domain\ValueObject\MeasurementType;
 use App\DietPlanner\Ingredient\Domain\ValueObject\NutritionalInformation;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientCategoryId;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
-use App\Tests\DietPlanner\Domain\IngredientTitleMother;
-use App\Tests\DietPlanner\Domain\MeasurementTypeMother;
-use App\Tests\DietPlanner\Domain\NutritionalInformationMother;
+use App\Tests\DietPlanner\Ingredient\Domain\IngredientTitleMother;
+use App\Tests\DietPlanner\Ingredient\Domain\MeasurementTypeMother;
+use App\Tests\DietPlanner\Ingredient\Domain\NutritionalInformationMother;
 use App\Tests\Shared\Domain\IngredientCategoryIdMother;
 use App\Tests\Shared\Domain\IngredientIdMother;
 
