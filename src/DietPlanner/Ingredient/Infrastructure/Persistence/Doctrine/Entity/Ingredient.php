@@ -3,12 +3,13 @@
 namespace App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity;
 
 use App\DietPlanner\Ingredient\Domain\ValueObject\MeasurementType;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Id;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: DoctrineIngredientRepository::class)]
 #[ORM\Table('ingredient')]
 class Ingredient
 {

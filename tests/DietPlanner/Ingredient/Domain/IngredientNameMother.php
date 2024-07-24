@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Tests\Shared\Domain;
+namespace App\Tests\DietPlanner\Ingredient\Domain;
+
+use App\Tests\Shared\Domain\MotherCreator;
 
 class IngredientNameMother
 {

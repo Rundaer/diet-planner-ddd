@@ -5,14 +5,14 @@ namespace App\DietPlanner\Ingredient\Infrastructure\Utils;
 use App\DietPlanner\Ingredient\Domain\Exception\IngredientNotFound;
 use App\DietPlanner\Ingredient\Domain\Ingredient as DomainIngredient;
 use App\DietPlanner\Ingredient\Domain\IngredientRepositoryInterface;
-use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientCategoryRepository;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 
-readonly class IngredientRepository implements IngredientRepositoryInterface
+readonly class IngredientCategoryRepository implements IngredientRepositoryInterface
 {
     public function __construct(
-        private DoctrineIngredientRepository $repository,
-        private IngredientAdapter $adapter,
+        private DoctrineIngredientCategoryRepository $repository,
+        private IngredientCategoryAdapter            $adapter,
     ) {
     }
 

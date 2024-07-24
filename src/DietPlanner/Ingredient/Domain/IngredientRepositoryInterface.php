@@ -1,8 +1,7 @@
 <?php
 
-namespace App\DietPlanner\Ingredient\Domain\Repository;
+namespace App\DietPlanner\Ingredient\Domain;
 
-use App\DietPlanner\Ingredient\Domain\Ingredient;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 
 interface IngredientRepositoryInterface

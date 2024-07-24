@@ -5,12 +5,12 @@ namespace App\DietPlanner\Ingredient\Infrastructure\Utils;
 use App\DietPlanner\Ingredient\Domain\Ingredient as DomainIngredient;
 use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
 use App\DietPlanner\Ingredient\Domain\ValueObject\NutritionalInformation as DomainNutritionalInformation;
-use App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity\Ingredient as EntityIngredient;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity\Ingredient as DoctrineIngredient;
 use App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity\NutritionalInformation as EntityNutritionalInformation;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientCategoryId;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use App\Shared\Infrastructure\Doctrine\EntityAdapterInterface;
-use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository as DoctrineIngredientRepository;
 
 final readonly class IngredientAdapter implements EntityAdapterInterface
 {
@@ -18,12 +18,12 @@ final readonly class IngredientAdapter implements EntityAdapterInterface
         private DoctrineIngredientRepository $repository
     ) {}
 
-    public function fromDomain(DomainIngredient $ingredient): EntityIngredient
+    public function fromDomain(DomainIngredient $ingredient): DoctrineIngredient
     {
         $entityIngredient = $this->repository->find($ingredient->ingredientId);
 
         if ($entityIngredient === null) {
-            $entityIngredient = new EntityIngredient(
+            $entityIngredient = new DoctrineIngredient(
                 $ingredient->ingredientId->value(),
                 $ingredient->ingredientCategoryId->value(),
                 $ingredient->title->value(),
@@ -35,7 +35,7 @@ final readonly class IngredientAdapter implements EntityAdapterInterface
         return $entityIngredient;
     }
 
-    public function toDomain(EntityIngredient $ingredient): DomainIngredient
+    public function toDomain(DoctrineIngredient $ingredient): DomainIngredient
     {
         return DomainIngredient::restore(
             new IngredientId($ingredient->getId()),

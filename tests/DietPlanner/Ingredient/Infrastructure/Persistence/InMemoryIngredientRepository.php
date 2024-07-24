@@ -3,7 +3,7 @@
 namespace App\Tests\DietPlanner\Ingredient\Infrastructure\Persistence;
 
 use App\DietPlanner\Ingredient\Domain\Ingredient;
-use App\DietPlanner\Ingredient\Domain\Repository\IngredientRepositoryInterface;
+use App\DietPlanner\Ingredient\Domain\IngredientRepositoryInterface;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 
 class InMemoryIngredientRepository implements IngredientRepositoryInterface

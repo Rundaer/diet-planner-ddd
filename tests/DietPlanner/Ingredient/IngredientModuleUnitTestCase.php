@@ -3,7 +3,7 @@
 namespace App\Tests\DietPlanner\Ingredient;
 
 use App\DietPlanner\Ingredient\Domain\Ingredient;
-use App\DietPlanner\Ingredient\Domain\Repository\IngredientRepositoryInterface;
+use App\DietPlanner\Ingredient\Domain\IngredientRepositoryInterface;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use App\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use Mockery;

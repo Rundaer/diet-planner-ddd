@@ -3,7 +3,7 @@
 namespace App\DietPlanner\Ingredient\Application\Command\Create;
 
 use App\DietPlanner\Ingredient\Domain\Ingredient;
-use App\DietPlanner\Ingredient\Domain\Repository\IngredientRepositoryInterface;
+use App\DietPlanner\Ingredient\Domain\IngredientRepositoryInterface;
 use App\DietPlanner\Ingredient\Domain\ValueObject\IngredientTitle;
 use App\DietPlanner\Ingredient\Domain\ValueObject\MeasurementType;
 use App\DietPlanner\Ingredient\Domain\ValueObject\NutritionalInformation;
