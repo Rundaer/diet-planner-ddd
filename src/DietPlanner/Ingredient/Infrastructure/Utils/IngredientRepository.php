@@ -5,7 +5,7 @@ namespace App\DietPlanner\Ingredient\Infrastructure\Utils;
 use App\DietPlanner\Ingredient\Domain\Exception\IngredientNotFound;
 use App\DietPlanner\Ingredient\Domain\Ingredient as DomainIngredient;
 use App\DietPlanner\Ingredient\Domain\Repository\IngredientRepositoryInterface;
-use App\DietPlanner\Ingredient\Infrastructure\Persistence\IngredientRepository as DoctrineIngredientRepository;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 
 readonly class IngredientRepository implements IngredientRepositoryInterface
@@ -27,6 +27,10 @@ readonly class IngredientRepository implements IngredientRepositoryInterface
     {
         $entity = $this->repository->find($id);
 
-        return $entity === null ? throw new IngredientNotFound() : $this->adapter->toDomain($entity);
+        if ($entity === null) {
+            throw new IngredientNotFound();
+        }
+
+        return $this->adapter->toDomain($entity);
     }
 }

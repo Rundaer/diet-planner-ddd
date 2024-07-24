@@ -14,5 +14,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-###< phpunit/phpunit ###
+###> deptrac ###
+.deptrac.cache
+###< deptrac ###

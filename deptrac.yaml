@@ -45,6 +45,26 @@ deptrac:
           value: src/DietPlanner/Ingredient/Infrastructure/.*
     ###< DietPlanner/Ingredient ###
 
+    - name: Composer
+      collectors:
+        - type: composer
+          composerPath: composer.json
+          composerLockPath: composer.lock
+          packages:
+              - doctrine/dbal
+              - doctrine/doctrine-bundle
+              - doctrine/orm
+              - ramsey/uuid
+              - symfony/console
+              - symfony/dotenv
+              - symfony/flex
+              - symfony/framework-bundle
+              - symfony/messenger
+              - symfony/runtime
+              - symfony/serializer
+              - symfony/twig-bundle
+              - symfony/yaml
+
   ruleset:
     SharedDomain:
       - SharedDomain
@@ -55,6 +75,7 @@ deptrac:
       - SharedDomain
       - SharedApplication
       - SharedInfrastructure
+      - Composer
 
     DietPlannerSharedDomain:
       - SharedDomain
@@ -71,6 +92,7 @@ deptrac:
       - SharedDomain
       - SharedApplication
       - SharedInfrastructure
+      - Composer
 
     DietPlannerIngredientDomain:
       - SharedDomain
@@ -93,3 +115,4 @@ deptrac:
       - DietPlannerIngredientDomain
       - DietPlannerIngredientApplication
       - DietPlannerIngredientInfrastructure
+      - Composer

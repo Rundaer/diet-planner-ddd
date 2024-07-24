@@ -6,7 +6,7 @@ use App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity\Ingred
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use Doctrine\ORM\EntityManagerInterface;
 
-readonly class IngredientRepository
+readonly class DoctrineIngredientRepository
 {
     public function __construct(
         private EntityManagerInterface $entityManager,

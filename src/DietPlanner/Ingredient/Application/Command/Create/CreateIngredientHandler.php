@@ -17,8 +17,8 @@ readonly class CreateIngredientHandler implements SyncCommandHandler
 {
     public function __construct(
         private IngredientRepositoryInterface $repository,
-        private EventBusInterface             $eventDispatcher,
-        private IdGeneratorInterface          $idGenerator,
+        private EventBusInterface $eventDispatcher,
+        private IdGeneratorInterface $idGenerator,
     ) {}
 
     public function __invoke(CreateIngredientCommand $command): void

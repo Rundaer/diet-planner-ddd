@@ -10,7 +10,7 @@ use App\DietPlanner\Ingredient\Infrastructure\Persistence\Doctrine\Entity\Nutrit
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientCategoryId;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
 use App\Shared\Infrastructure\Doctrine\EntityAdapterInterface;
-use App\DietPlanner\Ingredient\Infrastructure\Persistence\IngredientRepository as DoctrineIngredientRepository;
+use App\DietPlanner\Ingredient\Infrastructure\Persistence\DoctrineIngredientRepository as DoctrineIngredientRepository;
 
 final readonly class IngredientAdapter implements EntityAdapterInterface
 {
