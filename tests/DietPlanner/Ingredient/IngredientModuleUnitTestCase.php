@@ -5,12 +5,15 @@ namespace App\Tests\DietPlanner\Ingredient;
 use App\DietPlanner\Ingredient\Domain\Ingredient;
 use App\DietPlanner\Ingredient\Domain\IngredientRepositoryInterface;
 use App\DietPlanner\Shared\Domain\ValueObject\IngredientId;
+use App\Tests\Shared\Infrastructure\PhpUnit\Traits\IngredientCategoryValidatorTrait;
 use App\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 use Mockery;
 use Mockery\MockInterface;
 
 abstract class IngredientModuleUnitTestCase extends UnitTestCase
 {
+    use IngredientCategoryValidatorTrait;
+
     protected IngredientRepositoryInterface|MockInterface|null $repository = null;
 
     protected function repository(): IngredientRepositoryInterface|MockInterface

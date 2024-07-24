@@ -2,6 +2,7 @@
 
 namespace App\Tests\Shared\Infrastructure\PhpUnit;
 
+use App\DietPlanner\Shared\Domain\Services\IngredientCategoryValidatorInterface;
 use App\Shared\Application\Command\Sync\Command as SyncCommand;
 use App\Shared\Application\Service\IdGeneratorInterface;
 use App\Shared\Domain\Event\Event;
