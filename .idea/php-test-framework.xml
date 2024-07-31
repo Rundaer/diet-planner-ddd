@@ -5,6 +5,7 @@
       <tool tool_name="PHPUnit">
         <cache>
           <versions>
+            <info id="Local\\wsl.localhost\Ubuntu\home\rundaer\projects\internal\diet-planner-ddd\vendor\autoload.php" version="PHPUnit version can't be detected. Default PHP interpreter is not local" />
             <info id="interpreter-a6a41502-f7d0-4bf9-810c-a5669ba5f582" version="9.6.19" />
           </versions>
         </cache>

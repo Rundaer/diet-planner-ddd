@@ -19,7 +19,7 @@ readonly class DoctrineIngredientCategoryRepository
         $this->entityManager->flush();
     }
 
-    public function find(IngredientCategoryId $id): ?EntityIngredientCategory
+    public function find(string $id): ?EntityIngredientCategory
     {
         $qb = $this->entityManager->createQueryBuilder();
 
@@ -27,7 +27,7 @@ readonly class DoctrineIngredientCategoryRepository
             ->select('i')
             ->from(EntityIngredientCategory::class, 'i')
             ->where('i.id = :id')
-            ->setParameter(':id', $id->value())
+            ->setParameter(':id', $id)
             ->getQuery()
             ->getOneOrNullResult();
     }

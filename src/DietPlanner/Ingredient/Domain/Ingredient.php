@@ -28,6 +28,7 @@ final class Ingredient extends AggregateRoot
         MeasurementType $measurementType
     ): self {
         $ingredient = new self($ingredientId, $ingredientCategoryId, $title, $nutritionalInformation, $measurementType);
+
         $ingredient->record(IngredientCreated::create($ingredientId));
 
         return $ingredient;

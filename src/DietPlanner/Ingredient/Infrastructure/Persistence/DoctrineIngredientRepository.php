@@ -31,4 +31,23 @@ readonly class DoctrineIngredientRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @param array<IngredientId> $ids
+     */
+    public function findMultiple(array $ids): array
+    {
+        $preparedIds = array_map(function (IngredientId $id) {
+            return $id->value();
+        }, $ids);
+
+        $qb = $this->entityManager->createQueryBuilder();
+
+        return $qb
+            ->select('i.id')
+            ->where('i.id IN (:ids)')
+            ->setParameter('ids', $preparedIds)
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
